@@ -1,0 +1,107 @@
+{
+    "sampleImage": "images/sample.jpg",
+    "textCoordinates": {
+        "dateX": 400,
+        "dateY": 450,
+        "timeX": 400,
+        "timeY": 500
+    },
+    "facilities": [
+        {
+            "id": 1,
+        "name": "AEROBIC",
+        "image": "images/aerobic-card.jpg",
+        "templateImage": "images/aerobic-card.jpg",
+        "timeSlots": [
+            "7:00 AM - 9:00 AM",
+            "9:00 AM - 11:00 AM",
+            "11:00 AM - 1:00 PM",
+            "1:00 PM - 3:00 PM",
+            "3:00 PM - 5:00 PM",
+            "5:00 PM - 7:00 PM",
+            "7:00 PM - 9:00 PM",
+            "9:00 PM - 10:00 PM"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "AIR HOCKEY TABLE 1",
+        "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%234ecdc4' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='white' text-anchor='middle' dy='.3em'%3EAIR HOCKEY%3C/text%3E%3C/svg%3E",
+        "templateImage": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%234ecdc4' width='800' height='600'/%3E%3Ctext x='50%25' y='40%25' font-size='40' fill='white' text-anchor='middle' dy='.3em'%3EAIR HOCKEY BOOKING%3C/text%3E%3C/svg%3E",
+        "timeSlots": [
+            "7:00 AM - 9:00 AM",
+            "9:00 AM - 11:00 AM",
+            "11:00 AM - 1:00 PM",
+            "1:00 PM - 3:00 PM",
+            "3:00 PM - 5:00 PM",
+            "5:00 PM - 7:00 PM",
+            "7:00 PM - 9:00 PM",
+            "9:00 PM - 10:00 PM"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Badminton Court 1",
+        "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%2395e1d3' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='white' text-anchor='middle' dy='.3em'%3EBADMINTON%3C/text%3E%3C/svg%3E",
+        "templateImage": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%2395e1d3' width='800' height='600'/%3E%3Ctext x='50%25' y='40%25' font-size='40' fill='white' text-anchor='middle' dy='.3em'%3EBADMINTON BOOKING%3C/text%3E%3C/svg%3E",
+        "timeSlots": [
+            "7:00 AM - 9:00 AM",
+            "9:00 AM - 11:00 AM",
+            "11:00 AM - 1:00 PM",
+            "1:00 PM - 3:00 PM",
+            "3:00 PM - 5:00 PM",
+            "5:00 PM - 7:00 PM",
+            "7:00 PM - 9:00 PM",
+            "9:00 PM - 10:00 PM"
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Badminton Court 2",
+        "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%2395e1d3' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='white' text-anchor='middle' dy='.3em'%3EBADMINTON 2%3C/text%3E%3C/svg%3E",
+        "templateImage": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%2395e1d3' width='800' height='600'/%3E%3Ctext x='50%25' y='40%25' font-size='40' fill='white' text-anchor='middle' dy='.3em'%3EBADMINTON 2 BOOKING%3C/text%3E%3C/svg%3E",
+        "timeSlots": [
+            "7:00 AM - 9:00 AM",
+            "9:00 AM - 11:00 AM",
+            "11:00 AM - 1:00 PM",
+            "1:00 PM - 3:00 PM",
+            "3:00 PM - 5:00 PM",
+            "5:00 PM - 7:00 PM",
+            "7:00 PM - 9:00 PM",
+            "9:00 PM - 10:00 PM"
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Basketball Court",
+        "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23f38181' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='white' text-anchor='middle' dy='.3em'%3EBASKETBALL%3C/text%3E%3C/svg%3E",
+        "templateImage": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23f38181' width='800' height='600'/%3E%3Ctext x='50%25' y='40%25' font-size='40' fill='white' text-anchor='middle' dy='.3em'%3EBASKETBALL BOOKING%3C/text%3E%3C/svg%3E",
+        "timeSlots": [
+            "7:00 AM - 9:00 AM",
+            "9:00 AM - 11:00 AM",
+            "11:00 AM - 1:00 PM",
+            "1:00 PM - 3:00 PM",
+            "3:00 PM - 5:00 PM",
+            "5:00 PM - 7:00 PM",
+            "7:00 PM - 9:00 PM",
+            "9:00 PM - 10:00 PM"
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Futsal Court",
+        "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%2356ab2f' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dy='.3em'%3EFUTSAL%3C/text%3E%3C/svg%3E",
+        "templateImage": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%2356ab2f' width='800' height='600'/%3E%3Ctext x='50%25' y='40%25' font-size='48' fill='white' text-anchor='middle' dy='.3em'%3EFUTSAL BOOKING%3C/text%3E%3C/svg%3E",
+        "timeSlots": [
+            "7:00 AM - 9:00 AM",
+            "9:00 AM - 11:00 AM",
+            "11:00 AM - 1:00 PM",
+            "1:00 PM - 3:00 PM",
+            "3:00 PM - 5:00 PM",
+            "5:00 PM - 7:00 PM",
+            "7:00 PM - 9:00 PM",
+            "9:00 PM - 10:00 PM"
+        ]
+    }
+    ]
+}
