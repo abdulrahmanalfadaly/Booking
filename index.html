@@ -16,9 +16,22 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #1a1a1a;
+            background: #0a0a0a;
             color: #ffffff;
             line-height: 1.6;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
 
         .container {
@@ -31,8 +44,14 @@
         .header {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             margin-bottom: 30px;
             padding: 10px 0;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
         }
 
         .back-button {
@@ -56,14 +75,15 @@
         }
 
         .subtitle {
-            color: #b0b0b0;
+            color: #888;
             margin-bottom: 20px;
             font-size: 14px;
+            opacity: 0.8;
         }
 
         .search-box {
-            background: #2a2a2a;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(102, 126, 234, 0.2);
             border-radius: 30px;
             padding: 16px 24px;
             width: 100%;
@@ -71,12 +91,15 @@
             font-size: 16px;
             margin-bottom: 30px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .search-box:focus {
             outline: none;
-            border-color: rgba(102, 126, 234, 0.5);
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.8);
+            box-shadow: 0 4px 24px rgba(102, 126, 234, 0.3);
+            background: rgba(25, 25, 25, 0.9);
         }
 
         .search-box::placeholder {
@@ -96,13 +119,14 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
 
         .facility-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.3), 0 8px 24px rgba(0, 0, 0, 0.6);
+            border-color: rgba(102, 126, 234, 0.4);
         }
 
         .facility-image {
@@ -148,8 +172,8 @@
         }
 
         .booking-field {
-            background: #2a2a2a;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(20, 20, 25, 0.8);
+            border: 1px solid rgba(102, 126, 234, 0.2);
             border-radius: 12px;
             padding: 20px 24px;
             margin-bottom: 16px;
@@ -158,12 +182,15 @@
             justify-content: space-between;
             align-items: center;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
         }
 
         .booking-field:hover {
-            background: #333;
-            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(25, 25, 30, 0.9);
+            border-color: rgba(102, 126, 234, 0.5);
             transform: translateX(4px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
         }
 
         .booking-field label {
@@ -195,12 +222,29 @@
             cursor: pointer;
             margin-top: 24px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.25);
+            box-shadow: 0 6px 24px rgba(102, 126, 234, 0.4), 0 0 40px rgba(102, 126, 234, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .confirm-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
         }
 
         .confirm-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.6), 0 0 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .confirm-button:hover::before {
+            left: 100%;
         }
 
         /* Modal Styles */
@@ -222,15 +266,16 @@
         }
 
         .modal-content {
-            background: #2a2a2a;
+            background: linear-gradient(135deg, rgba(15, 15, 20, 0.98) 0%, rgba(10, 10, 15, 0.98) 100%);
             border-radius: 16px;
             padding: 24px;
             max-width: 90%;
             max-height: 80vh;
             overflow-y: auto;
             width: 400px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(102, 126, 234, 0.1);
+            backdrop-filter: blur(20px);
         }
 
         .modal-header {
@@ -291,35 +336,39 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #1a1a1a;
+            background: rgba(10, 10, 15, 0.6);
             border-radius: 10px;
             cursor: pointer;
             font-size: 14px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid transparent;
+            border: 1px solid rgba(102, 126, 234, 0.1);
         }
 
         .calendar-day:hover {
-            background: #2a2a2a;
-            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(25, 25, 30, 0.8);
+            border-color: rgba(102, 126, 234, 0.4);
             transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
         }
 
         .calendar-day.selected {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.5), 0 0 20px rgba(102, 126, 234, 0.3);
+            border-color: transparent;
         }
 
         .calendar-day.disabled {
             color: #444;
             cursor: not-allowed;
-            opacity: 0.5;
+            opacity: 0.3;
+            background: rgba(10, 10, 15, 0.3);
         }
 
         .calendar-day.disabled:hover {
-            background: #1a1a1a;
-            border-color: transparent;
+            background: rgba(10, 10, 15, 0.3);
+            border-color: rgba(102, 126, 234, 0.1);
             transform: none;
+            box-shadow: none;
         }
 
         /* Time Slot Styles */
@@ -330,25 +379,33 @@
         }
 
         .time-slot {
-            background: #1a1a1a;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(10, 10, 15, 0.6);
+            border: 1px solid rgba(102, 126, 234, 0.15);
             border-radius: 12px;
-            padding: 16px;
+            padding: 16px 12px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            white-space: nowrap;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 56px;
         }
 
         .time-slot:hover {
-            background: #2a2a2a;
-            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(25, 25, 30, 0.8);
+            border-color: rgba(102, 126, 234, 0.4);
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
         }
 
         .time-slot.selected {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-color: transparent;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5), 0 0 30px rgba(102, 126, 234, 0.3);
         }
 
         /* Confirmation Result */
@@ -370,7 +427,7 @@
         #resultCanvas {
             max-width: 100%;
             border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8), 0 0 60px rgba(102, 126, 234, 0.2);
         }
 
         .action-buttons {
@@ -391,12 +448,29 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.25);
+            box-shadow: 0 6px 24px rgba(102, 126, 234, 0.4), 0 0 40px rgba(102, 126, 234, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .view-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
         }
 
         .view-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.6), 0 0 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .view-button:hover::before {
+            left: 100%;
         }
 
         .download-button {
@@ -410,12 +484,29 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 16px rgba(17, 153, 142, 0.25);
+            box-shadow: 0 6px 24px rgba(17, 153, 142, 0.4), 0 0 40px rgba(56, 239, 125, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
         }
 
         .download-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(56, 239, 125, 0.4);
+            box-shadow: 0 12px 40px rgba(56, 239, 125, 0.6), 0 0 60px rgba(56, 239, 125, 0.3);
+        }
+
+        .download-button:hover::before {
+            left: 100%;
         }
 
         .fullscreen-overlay {
@@ -425,10 +516,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: #000000;
             z-index: 9999;
             align-items: center;
             justify-content: center;
+            backdrop-filter: blur(10px);
         }
 
         .fullscreen-overlay.active {
@@ -439,36 +531,37 @@
             max-width: 95%;
             max-height: 95vh;
             object-fit: contain;
-            transform: scale(1.1);
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.9), 0 0 100px rgba(102, 126, 234, 0.3);
+            border-radius: 8px;
         }
 
         .success-message {
             color: #38ef7d;
             font-size: 18px;
             margin: 20px 0;
+            text-shadow: 0 0 20px rgba(56, 239, 125, 0.4);
         }
 
         /* Coordinates Button */
         .coordinates-button {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            color: white;
-            font-size: 24px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            color: #667eea;
+            font-size: 20px;
             cursor: pointer;
-            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
-            z-index: 100;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .coordinates-button:hover {
-            transform: scale(1.1) translateY(-2px);
-            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.5);
+            background: rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
         }
 
         /* Coordinates Page */
@@ -487,9 +580,10 @@
             position: relative;
             border-radius: 16px;
             overflow: hidden;
-            background: #2a2a2a;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7), 0 0 40px rgba(102, 126, 234, 0.1);
+            backdrop-filter: blur(20px);
         }
 
         #previewCanvas {
@@ -497,33 +591,22 @@
             display: block;
         }
 
-        .coordinates-info {
-            background: #2a2a2a;
+        .coordinates-display-panel {
+            background: rgba(20, 20, 25, 0.8);
+            border: 1px solid rgba(102, 126, 234, 0.2);
             border-radius: 12px;
             padding: 20px;
-            margin-bottom: 15px;
-            color: #b0b0b0;
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .coordinates-info strong {
-            color: #ffffff;
-        }
-
-        .coordinates-display {
-            background: #1a1a1a;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 15px;
+            margin-bottom: 20px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
         }
 
         .coord-item {
             color: #b0b0b0;
-            font-size: 13px;
+            font-size: 14px;
         }
 
         .coord-item strong {
@@ -539,6 +622,33 @@
             cursor: grabbing;
         }
 
+        .coordinates-actions {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .reset-coordinates-button {
+            background: rgba(255, 75, 75, 0.1);
+            border: 1px solid rgba(255, 75, 75, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            color: #ff6b6b;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reset-coordinates-button:hover {
+            background: rgba(255, 75, 75, 0.2);
+            border-color: rgba(255, 75, 75, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 75, 75, 0.3);
+        }
+
         .save-coordinates-button {
             background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
             border: none;
@@ -549,14 +659,30 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 24px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 16px rgba(17, 153, 142, 0.25);
+            box-shadow: 0 6px 24px rgba(17, 153, 142, 0.4), 0 0 40px rgba(56, 239, 125, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .save-coordinates-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
         }
 
         .save-coordinates-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(56, 239, 125, 0.4);
+            box-shadow: 0 12px 40px rgba(56, 239, 125, 0.6), 0 0 60px rgba(56, 239, 125, 0.3);
+        }
+
+        .save-coordinates-button:hover::before {
+            left: 100%;
         }
 
         @media (max-width: 480px) {
@@ -580,6 +706,10 @@
             .action-buttons {
                 grid-template-columns: 1fr;
             }
+
+            .coordinates-actions {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -588,10 +718,12 @@
         <!-- Home Page -->
         <div id="homePage">
             <div class="header">
-                <button class="back-button" id="backButton" onclick="goBack()">←</button>
-                <h1>Select Facility</h1>
+                <div class="header-left">
+                    <button class="back-button" id="backButton" onclick="goBack()">←</button>
+                    <h1>Select Facility</h1>
+                </div>
+                <button class="coordinates-button" id="coordinatesBtn" onclick="openCoordinates()" title="Configure Text Position">⚙</button>
             </div>
-            <p class="subtitle">Please select the facilities you are looking for.</p>
             <input type="text" class="search-box" placeholder="Search keywords..." id="searchBox">
             <div class="facilities-grid" id="facilitiesGrid"></div>
         </div>
@@ -599,8 +731,10 @@
         <!-- Detail Page -->
         <div id="detailPage" class="detail-page">
             <div class="header">
-                <button class="back-button visible" onclick="goToHome()">←</button>
-                <h1 id="detailTitle">Facility Details</h1>
+                <div class="header-left">
+                    <button class="back-button visible" onclick="goToHome()">←</button>
+                    <h1 id="detailTitle">Facility Details</h1>
+                </div>
             </div>
             <img id="detailHeaderImage" class="facility-header-image" src="" alt="Facility">
             <h2 class="facility-title" id="detailFacilityName"></h2>
@@ -627,8 +761,10 @@
         <!-- Result Page -->
         <div id="resultPage" class="result-page">
             <div class="header">
-                <button class="back-button visible" onclick="goToHome()">←</button>
-                <h1>Booking Confirmed</h1>
+                <div class="header-left">
+                    <button class="back-button visible" onclick="goToHome()">←</button>
+                    <h1>Booking Confirmed</h1>
+                </div>
             </div>
             <p class="success-message">Your booking has been confirmed</p>
             <div class="result-image-container">
@@ -643,20 +779,27 @@
         <!-- Coordinates Configuration Page -->
         <div id="coordinatesPage" class="coordinates-page">
             <div class="header">
-                <button class="back-button visible" onclick="goToHome()">←</button>
-                <h1>Text Coordinates</h1>
+                <div class="header-left">
+                    <button class="back-button visible" onclick="goToHome()">←</button>
+                    <h1>Text Coordinates</h1>
+                </div>
+            </div>
+            
+            <div class="coordinates-display-panel">
+                <div class="coord-item">Date: <strong>X: <span id="dateXValue">193</span>, Y: <span id="dateYValue">635</span></strong></div>
+                <div class="coord-item">Time: <strong>X: <span id="timeXValue">191</span>, Y: <span id="timeYValue">680</span></strong></div>
             </div>
             
             <div class="preview-canvas-container">
                 <canvas id="previewCanvas"></canvas>
             </div>
 
-            <button class="save-coordinates-button" onclick="saveCoordinates()">Save Coordinates</button>
+            <div class="coordinates-actions">
+                <button class="reset-coordinates-button" onclick="resetCoordinates()">Reset</button>
+                <button class="save-coordinates-button" onclick="saveCoordinates()">Save Coordinates</button>
+            </div>
         </div>
     </div>
-
-    <!-- Coordinates Button (Floating) -->
-    <button class="coordinates-button" id="coordinatesBtn" onclick="openCoordinates()" style="display: none;" title="Configure Text Position">⚙</button>
 
     <!-- Fullscreen Overlay -->
     <div id="fullscreenOverlay" class="fullscreen-overlay" onclick="closeFullscreen()">
@@ -698,10 +841,10 @@
         let configData = {
             sampleImage: '',
             textCoordinates: {
-                dateX: 400,
-                dateY: 450,
-                timeX: 400,
-                timeY: 500
+                dateX: 193,
+                dateY: 635,
+                timeX: 191,
+                timeY: 680
             }
         };
 
@@ -732,7 +875,6 @@
                 }
                 
                 renderFacilities();
-                document.getElementById('coordinatesBtn').style.display = 'block';
             } catch (error) {
                 console.error('Error loading facilities:', error);
             }
@@ -776,7 +918,6 @@
             document.getElementById('homePage').style.display = 'none';
             document.getElementById('detailPage').classList.add('active');
             document.getElementById('resultPage').classList.remove('active');
-            document.getElementById('coordinatesBtn').style.display = 'none';
         }
 
         function goToHome() {
@@ -784,7 +925,6 @@
             document.getElementById('detailPage').classList.remove('active');
             document.getElementById('resultPage').classList.remove('active');
             document.getElementById('coordinatesPage').classList.remove('active');
-            document.getElementById('coordinatesBtn').style.display = 'block';
         }
 
         // Coordinates Configuration Functions
@@ -798,7 +938,6 @@
         function openCoordinates() {
             document.getElementById('homePage').style.display = 'none';
             document.getElementById('coordinatesPage').classList.add('active');
-            document.getElementById('coordinatesBtn').style.display = 'none';
             
             // Load image and setup drag
             loadPreviewImage();
@@ -915,13 +1054,13 @@
             // Draw sample image at original size
             ctx.drawImage(dragState.canvasImage, 0, 0);
 
-            // Draw sample text with Inter Medium
+            // Draw sample text with system font
             ctx.fillStyle = '#dcd7d6';
-            ctx.font = '500 20px Inter, Arial, sans-serif';
+            ctx.font = '600 20px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
             ctx.textAlign = 'left';
             
             // Draw date
-            const dateText = 'Monday, 02 Dec 2024';
+            const dateText = 'Wednesday, 22 Oct 2025';
             ctx.fillText(dateText, coords.dateX, coords.dateY);
             
             // Draw time
@@ -963,6 +1102,17 @@
             document.getElementById('timeYValue').textContent = coords.timeY;
         }
 
+        function resetCoordinates() {
+            // Reset to default coordinates
+            configData.textCoordinates = {
+                dateX: 193,
+                dateY: 635,
+                timeX: 191,
+                timeY: 680
+            };
+            updatePreview();
+        }
+
         function saveCoordinates() {
             const coords = configData.textCoordinates;
             localStorage.setItem('textCoordinates', JSON.stringify(coords));
@@ -985,14 +1135,65 @@
             // Set default time based on current facility's time slots
             if (!currentFacility || !currentFacility.timeSlots || currentFacility.timeSlots.length === 0) return;
             
-            const today = new Date();
-            const currentHour = today.getHours();
-            let defaultSlotIndex = Math.floor((currentHour - 7) / 2);
-            if (defaultSlotIndex < 0) defaultSlotIndex = 0;
-            if (defaultSlotIndex >= currentFacility.timeSlots.length) defaultSlotIndex = currentFacility.timeSlots.length - 1;
+            const now = new Date();
+            const currentMinutes = now.getHours() * 60 + now.getMinutes();
             
-            selectedTime = currentFacility.timeSlots[defaultSlotIndex];
+            let selectedIndex = 0;
+            
+            // Try to find the slot that contains the current time or the next available slot
+            for (let i = 0; i < currentFacility.timeSlots.length; i++) {
+                const slot = currentFacility.timeSlots[i];
+                const times = parseTimeSlotRange(slot);
+                
+                if (times) {
+                    // If current time is within this slot
+                    if (currentMinutes >= times.start && currentMinutes < times.end) {
+                        selectedIndex = i;
+                        break;
+                    }
+                    // If current time is before this slot, select it
+                    else if (currentMinutes < times.start) {
+                        selectedIndex = i;
+                        break;
+                    }
+                    // If current time is after this slot, keep looking (or use last one)
+                    else if (currentMinutes >= times.end) {
+                        selectedIndex = i; // Keep updating, will be last slot if all are past
+                    }
+                }
+            }
+            
+            selectedTime = currentFacility.timeSlots[selectedIndex];
             updateTimeDisplay();
+        }
+
+        function parseTimeSlotRange(slot) {
+            // Parse "9:00 AM - 11:00 AM" or "1:00 PM - 3:00 PM" etc.
+            const parts = slot.split(' - ');
+            if (parts.length !== 2) return null;
+            
+            const startTime = parseTime(parts[0].trim());
+            const endTime = parseTime(parts[1].trim());
+            
+            if (startTime === null || endTime === null) return null;
+            
+            return { start: startTime, end: endTime };
+        }
+
+        function parseTime(timeStr) {
+            // Parse "9:00 AM" or "11:00 PM" to minutes since midnight
+            const match = timeStr.match(/^(\d+):(\d+)\s*(AM|PM)$/i);
+            if (!match) return null;
+            
+            let hours = parseInt(match[1]);
+            const minutes = parseInt(match[2]);
+            const period = match[3].toUpperCase();
+            
+            // Convert to 24-hour format
+            if (period === 'PM' && hours !== 12) hours += 12;
+            if (period === 'AM' && hours === 12) hours = 0;
+            
+            return hours * 60 + minutes;
         }
 
         function updateDateDisplay() {
@@ -1134,9 +1335,9 @@
                 // Get saved coordinates
                 const coords = configData.textCoordinates;
 
-                // Add text with Inter Medium
+                // Add text with system font
                 ctx.fillStyle = '#dcd7d6';
-                ctx.font = '500 20px Inter, Arial, sans-serif';
+                ctx.font = '600 20px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
                 ctx.textAlign = 'left';
                 
                 // Format date as "Monday, 02 Dec 2024"

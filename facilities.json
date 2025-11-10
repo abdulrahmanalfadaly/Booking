@@ -1,10 +1,10 @@
 {
     "sampleImage": "images/sample.jpg",
     "textCoordinates": {
-        "dateX": 400,
-        "dateY": 450,
-        "timeX": 400,
-        "timeY": 500
+        "dateX": 193,
+        "dateY": 635,
+        "timeX": 191,
+        "timeY": 680
     },
     "facilities": [
         {
@@ -36,7 +36,122 @@
         "7:00 PM - 9:00 PM",
         "9:00 PM - 11:00 PM"
     ]
+},
+{
+    "id": 3,
+"name": "Futsal Court",
+"image": "images/Futsal.jpg",
+"templateImage": "images/FutsalCourt.jpg",
+"timeSlots": [
+    "9:00 AM - 11:00 AM",
+    "11:00 AM - 1:00 PM",
+    "1:00 PM - 3:00 PM",
+    "3:00 PM - 5:00 PM",
+    "5:00 PM - 7:00 PM",
+    "7:00 PM - 9:00 PM",
+    "9:00 PM - 11:00 PM"
+    ]
+},
+{
+    "id": 4,
+"name": "Squash Court",
+"image": "images/Squash.jpg",
+"templateImage": "images/SquashCourt.jpg",
+"timeSlots": [
+    "7:00 AM - 9:00 AM",
+    "9:00 AM - 11:00 AM",
+    "11:00 AM - 1:00 PM",
+    "1:00 PM - 3:00 PM",
+    "3:00 PM - 5:00 PM",
+    "5:00 PM - 7:00 PM",
+    "7:00 PM - 9:00 PM",
+    "9:00 PM - 11:00 PM"
+    ]
+},
+{
+    "id": 5,
+"name": "Ping Pong",
+"image": "images/Ping.jpg",
+"templateImage": "images/PingPong.jpg",
+"timeSlots": [
+    "7:00 AM - 9:00 AM",
+    "9:00 AM - 11:00 AM",
+    "11:00 AM - 1:00 PM",
+    "1:00 PM - 3:00 PM",
+    "3:00 PM - 5:00 PM",
+    "5:00 PM - 7:00 PM",
+    "7:00 PM - 9:00 PM",
+    "9:00 PM - 11:00 PM"
+    ]
+},
+{
+    "id": 6,
+"name": "AIR HOCKEY TABLE 1",
+"image": "images/HOCKEY.jpg",
+"templateImage": "images/AIRHOCKEYTABLE1.jpg",
+"timeSlots": [
+    "9:00 AM - 11:00 AM",
+    "11:00 AM - 1:00 PM",
+    "1:00 PM - 3:00 PM",
+    "3:00 PM - 5:00 PM",
+    "5:00 PM - 7:00 PM",
+    "7:00 PM - 9:00 PM",
+    "9:00 PM - 11:00 PM"
+    ]
+},
+{
+    "id": 7,
+"name": "DARTBOARD 1",
+"image": "images/DARTBOARD.jpg",
+"templateImage": "images/DARTBOARD1.jpg",
+"timeSlots": [
+    "9:00 AM - 10:00 AM",
+    "10:00 AM - 11:00 AM",
+    "11:00 AM - 12:00 PM",
+    "12:00 PM - 1:00 PM",
+    "1:00 PM - 2:00 PM",
+    "2:00 PM - 3:00 PM",
+    "3:00 PM - 4:00 PM",
+    "4:00 PM - 5:00 PM",
+    "5:00 PM - 6:00 PM",
+    "6:00 PM - 7:00 PM",
+    "7:00 PM - 8:00 PM",
+    "8:00 PM - 9:00 PM",
+    "9:00 PM - 10:00 PM",
+    "10:00 PM - 11:00 PM"
+    ]
+},
+{
+    "id": 8,
+"name": "FOOSBALL TABLE 1",
+"image": "images/FOOSBALL.jpg",
+"templateImage": "images/FOOSBALLTABLE1.jpg",
+"timeSlots": [
+    "9:00 AM - 11:00 AM",
+    "11:00 AM - 1:00 PM",
+    "1:00 PM - 3:00 PM",
+    "3:00 PM - 5:00 PM",
+    "5:00 PM - 7:00 PM",
+    "7:00 PM - 9:00 PM",
+    "9:00 PM - 11:00 PM"
+    ]
+},
+{
+    "id": 9,
+"name": "POOL TABLE 1",
+"image": "images/POOL.jpg",
+"templateImage": "images/POOLTABLE1.jpg",
+"timeSlots": [
+    "9:00 AM - 11:00 AM",
+    "11:00 AM - 1:00 PM",
+    "1:00 PM - 3:00 PM",
+    "3:00 PM - 5:00 PM",
+    "5:00 PM - 7:00 PM",
+    "7:00 PM - 9:00 PM",
+    "9:00 PM - 11:00 PM"
+    ]
 }
+
 
     ]
 }
