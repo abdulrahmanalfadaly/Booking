@@ -373,6 +373,32 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
 
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .view-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.25);
+        }
+
+        .view-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+        }
+
         .download-button {
             background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
             border: none;
@@ -383,7 +409,6 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 24px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 4px 16px rgba(17, 153, 142, 0.25);
         }
@@ -391,6 +416,29 @@
         .download-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(56, 239, 125, 0.4);
+        }
+
+        .fullscreen-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fullscreen-overlay.active {
+            display: flex;
+        }
+
+        .fullscreen-overlay img {
+            max-width: 95%;
+            max-height: 95vh;
+            object-fit: contain;
         }
 
         .success-message {
@@ -527,6 +575,10 @@
             .time-slots {
                 grid-template-columns: 1fr;
             }
+
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -581,7 +633,10 @@
             <div class="result-image-container">
                 <canvas id="resultCanvas"></canvas>
             </div>
-            <button class="download-button" onclick="downloadImage()">Download Booking Confirmation</button>
+            <div class="action-buttons">
+                <button class="view-button" onclick="viewFullscreen()">View Full Screen</button>
+                <button class="download-button" onclick="downloadImage()">Download</button>
+            </div>
         </div>
 
         <!-- Coordinates Configuration Page -->
@@ -601,6 +656,11 @@
 
     <!-- Coordinates Button (Floating) -->
     <button class="coordinates-button" id="coordinatesBtn" onclick="openCoordinates()" style="display: none;" title="Configure Text Position">⚙</button>
+
+    <!-- Fullscreen Overlay -->
+    <div id="fullscreenOverlay" class="fullscreen-overlay" onclick="closeFullscreen()">
+        <img id="fullscreenImage" src="" alt="Booking Confirmation">
+    </div>
 
     <!-- Date Picker Modal -->
     <div id="dateModal" class="modal">
@@ -674,7 +734,6 @@
                 document.getElementById('coordinatesBtn').style.display = 'block';
             } catch (error) {
                 console.error('Error loading facilities:', error);
-                alert('Failed to load facilities data. Please make sure facilities.json exists.');
             }
         }
 
@@ -857,15 +916,15 @@
 
             // Draw sample text with Inter Medium
             ctx.fillStyle = '#dcd7d6';
-            ctx.font = '500 21px Inter, Arial, sans-serif';
+            ctx.font = '500 20px Inter, Arial, sans-serif';
             ctx.textAlign = 'left';
             
             // Draw date
-            const dateText = 'Saturday, 25 Oct 2025';
+            const dateText = 'Monday, 02 Dec 2024';
             ctx.fillText(dateText, coords.dateX, coords.dateY);
             
             // Draw time
-            const timeText = '9:00 PM - 11:00 PM';
+            const timeText = '7:00 PM - 9:00 PM';
             ctx.fillText(timeText, coords.timeX, coords.timeY);
 
             // Draw crosshairs and drag handles
@@ -907,7 +966,6 @@
             const coords = configData.textCoordinates;
             localStorage.setItem('textCoordinates', JSON.stringify(coords));
             
-            alert('Coordinates saved successfully!');
             goToHome();
         }
 
@@ -937,8 +995,14 @@
         }
 
         function updateDateDisplay() {
-            const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
-            document.getElementById('selectedDate').textContent = selectedDate.toLocaleDateString('en-US', options);
+            // Format as "Monday, 02 Dec 2024"
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const dayName = days[selectedDate.getDay()];
+            const day = String(selectedDate.getDate()).padStart(2, '0');
+            const month = months[selectedDate.getMonth()];
+            const year = selectedDate.getFullYear();
+            document.getElementById('selectedDate').textContent = `${dayName}, ${day} ${month} ${year}`;
         }
 
         function updateTimeDisplay() {
@@ -1040,13 +1104,17 @@
         // Confirm Booking
         function confirmBooking() {
             if (!selectedTime) {
-                alert('Please select a time slot');
                 return;
             }
 
             generateBookingImage();
             document.getElementById('detailPage').classList.remove('active');
             document.getElementById('resultPage').classList.add('active');
+            
+            // Automatically show fullscreen after a brief delay to let canvas render
+            setTimeout(() => {
+                viewFullscreen();
+            }, 100);
         }
 
         function generateBookingImage() {
@@ -1067,13 +1135,17 @@
 
                 // Add text with Inter Medium
                 ctx.fillStyle = '#dcd7d6';
-                ctx.font = '500 21px Inter, Arial, sans-serif';
+                ctx.font = '500 20px Inter, Arial, sans-serif';
                 ctx.textAlign = 'left';
                 
-                // Draw date at configured position
-                const dateStr = selectedDate.toLocaleDateString('en-US', { 
-                    weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' 
-                });
+                // Format date as "Monday, 02 Dec 2024"
+                const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                const dayName = days[selectedDate.getDay()];
+                const day = String(selectedDate.getDate()).padStart(2, '0');
+                const month = months[selectedDate.getMonth()];
+                const year = selectedDate.getFullYear();
+                const dateStr = `${dayName}, ${day} ${month} ${year}`;
                 ctx.fillText(dateStr, coords.dateX, coords.dateY);
                 
                 // Draw time at configured position
@@ -1088,6 +1160,17 @@
             link.download = `booking-${currentFacility.name.replace(/\s+/g, '-')}-${Date.now()}.png`;
             link.href = canvas.toDataURL('image/png');
             link.click();
+        }
+
+        function viewFullscreen() {
+            const canvas = document.getElementById('resultCanvas');
+            const img = document.getElementById('fullscreenImage');
+            img.src = canvas.toDataURL('image/png');
+            document.getElementById('fullscreenOverlay').classList.add('active');
+        }
+
+        function closeFullscreen() {
+            document.getElementById('fullscreenOverlay').classList.remove('active');
         }
 
         // Initialize app
