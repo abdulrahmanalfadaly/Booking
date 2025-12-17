@@ -1317,17 +1317,14 @@
                 return;
             }
 
-            generateBookingImage();
             document.getElementById('detailPage').classList.remove('active');
             document.getElementById('resultPage').classList.add('active');
             
-            // Automatically show fullscreen after a brief delay to let canvas render
-            setTimeout(() => {
-                viewFullscreen();
-            }, 100);
+            // Generate image and show fullscreen when ready
+            generateBookingImage(true);
         }
 
-        function generateBookingImage() {
+        function generateBookingImage(autoFullscreen = false) {
             const canvas = document.getElementById('resultCanvas');
             const ctx = canvas.getContext('2d');
 
@@ -1360,6 +1357,13 @@
                 
                 // Draw time at configured position
                 ctx.fillText(selectedTime, coords.timeX, coords.timeY);
+                
+                // Show fullscreen automatically after image is fully rendered
+                if (autoFullscreen) {
+                    setTimeout(() => {
+                        viewFullscreen();
+                    }, 50);
+                }
             };
             img.src = currentFacility.templateImage;
         }
