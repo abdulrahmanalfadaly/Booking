@@ -8,6 +8,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* Fixga Medium Font */
+        @font-face {
+            font-family: 'Fixga Medium';
+            src: url('fonts/Fixga Medium.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -1054,9 +1062,9 @@
             // Draw sample image at original size
             ctx.drawImage(dragState.canvasImage, 0, 0);
 
-            // Draw sample text with system font
+            // Draw sample text with Fixga Medium
             ctx.fillStyle = '#dcd7d6';
-            ctx.font = '600 20px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+            ctx.font = '20px "Fixga Medium", -apple-system, BlinkMacSystemFont, Arial, sans-serif';
             ctx.textAlign = 'left';
             
             // Draw date
@@ -1335,9 +1343,9 @@
                 // Get saved coordinates
                 const coords = configData.textCoordinates;
 
-                // Add text with system font
+                // Add text with Fixga Medium
                 ctx.fillStyle = '#dcd7d6';
-                ctx.font = '600 20px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+                ctx.font = '20px "Fixga Medium", -apple-system, BlinkMacSystemFont, Arial, sans-serif';
                 ctx.textAlign = 'left';
                 
                 // Format date as "Monday, 02 Dec 2024"
